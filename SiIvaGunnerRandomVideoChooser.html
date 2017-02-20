@@ -5,11 +5,11 @@
   <div id="page-wrapper">
 
         <div>
-            Copy the list of rips from <a href="http://siivagunner.wikia.com/wiki/List_of_SiIvaGunner_Uploads">the wikia page</a>, save them in a text file and open 'em here:
+            Copy the list of rips from <a href="http://siivagunner.wikia.com/wiki/List_of_SiIvaGunner_Uploads">the wikia page</a>, save them in a text file and open it here:
             <input type="file" id="fileInput">
         </div>
-		<button style="display:none;" id="RandomButton" onClick="FindRandomRip()">Random Rip</button>
-		<p id="FitnessGramPacerTest" style="display:none;">Paste rip title here:<input type="text" id="SearchRipInputBox"><button id="SearchRipButton" onClick="SearchForRip(SearchRipInputBox.value)">Search Rip</button><p><br>
+		<p id="FitnessGramPacerTest" style="display:none;">	<button id="RandomButton" onClick="FindRandomRip()">Random Rip</button><br>
+		<input type="text" id="SearchRipInputBox">		<button id="SearchRipButton" onClick="SearchForRip(SearchRipInputBox.value)">Search Rip</button><p><br>
         <p id="RipsDisplayArea"><p>
 
     </div>
@@ -34,7 +34,6 @@ window.onload = function() {
 					
 					RipCount = ProcessRips();
 					RipsDisplayArea.innerText = RipsDisplayArea.innerText + "\n\n" + RipCount + " rips. Wew.";
-					document.getElementById("RandomButton").style.display="block";
 					document.getElementById("FitnessGramPacerTest").style.display="block";
                 }
 
