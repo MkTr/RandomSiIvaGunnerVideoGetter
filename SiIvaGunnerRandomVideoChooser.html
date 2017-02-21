@@ -5,8 +5,8 @@
   <div id="page-wrapper">
 
         <div>
-            Copy the list of rips from <a href="http://siivagunner.wikia.com/wiki/List_of_SiIvaGunner_Uploads">the wikia page</a> (highlight the first rip, hold shift and click the space after the last rip), save them in a text file and open it here:
-            <input type="file" id="fileInput">
+            <p id="instructions">Copy the list of rips from <a href="http://siivagunner.wikia.com/wiki/List_of_SiIvaGunner_Uploads">the wikia page</a> (highlight the first rip, hold shift and click the space after the last rip), save them in a text file and open it here:
+            <input type="file" id="fileInput"><p>
         </div>
 		<p id="FitnessGramPacerTest" style="display:none;">	<button id="RandomButton" onClick="FindRandomRip()">Random Rip</button><br>
 		<input type="text" id="SearchRipInputBox">		<button id="SearchRipButton" onClick="SearchForRip(SearchRipInputBox.value)">Search Rip</button><p><br>
@@ -35,6 +35,7 @@ window.onload = function() {
 					RipCount = ProcessRips();
 					RipsDisplayArea.innerText = RipsDisplayArea.innerText + "\n\n" + RipCount + " rips. Wew.";
 					document.getElementById("FitnessGramPacerTest").style.display="block";
+					document.getElementById("instructions").style.display="none";
                 }
 
                 reader.readAsText(file);    
@@ -47,6 +48,51 @@ window.onload = function() {
 function ProcessRips(){
 		RipsList = RipsDisplayArea.innerText.split(/\r\n|\r|\n/);
 		var ListSize = RipsList.length;
+		var pos;
+		RipsDisplayArea.innerText = '';
+		
+		for(pos = 0; pos < ListSize; ++pos)
+		{
+			if(RipsList[pos] == 0) {
+				RipsList.splice(pos,1);
+				--pos;
+				--ListSize
+			}
+		}
+		
+		RipsDisplayArea.innerText = RipsList.join('\n');
+		return ListSize;
+}
+
+function FindRandomRip(){
+		var randomRip = Math.floor(Math.random() * RipCount);
+/*		var textPosition = 0;
+		var areWeThereYet;
+		for(areWeThereYet = 0; areWeThereYet < randomRip; ++areWeThereYet)
+		{
+			textPosition = RipsDisplayArea.innerText.indexOf("\n",textPosition+1);
+		}
+		var rip = RipsDisplayArea.innerText.substring(textPosition, RipsDisplayArea.innerText.indexOf("\n",textPosition+1) );
+
+//		var fontSize = parseInt( window.getComputedStyle(document.getElementById("RipsDisplayArea")).fontSize ) +2;*/
+//		window.scrollTo(0,(fontSize * randomRip));
+
+		document.getElementById("SearchRipInputBox").value = RipsList[randomRip];
+}
+
+function SearchForRip(theRip){
+		var linkToSiIva = "https://www.youtube.com/channel/UC9ecwl3FTG66jIKA9JRDtmg/search?query=" + theRip;
+		linkToSiIva = linkToSiIva.replace(/ /g, '%20');
+		linkToSiIva = linkToSiIva.replace(/"/g, '%20');
+		window.open(linkToSiIva);
+}
+
+
+</script>
+
+</body>
+</html> 
+
 		var pos;
 		RipsDisplayArea.innerText = '';
 		
