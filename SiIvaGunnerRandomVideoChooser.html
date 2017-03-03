@@ -263,6 +263,7 @@ function SearchForRip(theRip){
 		var linkToSiIva = "https://www.youtube.com/channel/UC9ecwl3FTG66jIKA9JRDtmg/search?query=" + theRip;
 		linkToSiIva = linkToSiIva.replace(/ /g, '%20');
 		linkToSiIva = linkToSiIva.replace(/"/g, '%20');
+		linkToSiIva = linkToSiIva.replace(/&/g, '%20');
 		window.open(linkToSiIva);
 }
 
